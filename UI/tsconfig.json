@@ -19,7 +19,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/lib/*": ["./lib/*"],
+      "@/models/*": ["./models/*"],
+      "@/repositories/*": ["./repositories/*"],
+      "@/services/*": ["./services/*"],
+      "@/context/*": ["./context/*"],
+      "@/hooks": ["./hooks/*"],
     }
   },
   "include": [
