@@ -22,8 +22,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [teams, setTeams] = useState<Team[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   async function refreshUser() {
+    if (!isMounted) return;
     setLoading(true);
     try {
       const current = await account.get();
@@ -84,8 +90,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    refreshUser(); // Check auth state on app load
-  }, []);
+    if (isMounted) {
+      refreshUser(); // Check auth state on app load
+    }
+  }, [isMounted]);
 
   const value: AuthContextType = {
     user,
