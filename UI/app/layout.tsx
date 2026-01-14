@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "../hooks/useAuth";
 import { LayoutProps } from "@/types/layout";
 
 const geistSans = Geist({
@@ -22,6 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: LayoutProps) {
+
   return (
     <html lang="en">
       <body

@@ -1,3 +1,13 @@
+'use client';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 export default function Home() {
-  return <div>Welcome to the Home Page</div>;
+  const router = useRouter();
+
+  useEffect(() => {
+      router.replace("/solutions");
+    }, [router]);
+  
+    return <div>Welcome to the Home Page</div>;
 }

@@ -26,6 +26,7 @@
       "@/services/*": ["./services/*"],
       "@/context/*": ["./context/*"],
       "@/hooks": ["./hooks/*"],
+      "@/components/*": ["./components/*"],
     }
   },
   "include": [
