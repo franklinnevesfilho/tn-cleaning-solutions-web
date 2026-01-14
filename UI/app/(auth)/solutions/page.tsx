@@ -1,7 +1,7 @@
 'use client';
 
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function SolutionsDefaultPage() {
@@ -10,16 +10,13 @@ export default function SolutionsDefaultPage() {
     const router = useRouter();
 
     useEffect(() => {
-        const navigate = async () => {
-            if (!loading) {
-                if (user) {
-                    await router.push("/solutions/dashboard");
-                } else {
-                    await router.push("/login");
-                }
+        if (!loading) {
+            if (user) {
+                router.push("/solutions/dashboard");
+            } else {
+                router.push("/login");
             }
-        };
-        navigate();
+        }
     }, [loading, user, router]);
     return (
             <div className="flex items-center justify-center min-h-screen">
