@@ -5,6 +5,7 @@ import { navRepo } from "@/repositories/navRepo";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { NavItem } from "@/models/navItems";
+import { useRouter } from "next/navigation";
 
 
 
@@ -12,6 +13,14 @@ export default function SolutionsLayout({ children }: LayoutProps) {
     const {user, teams, logout} = useAuth();
     const [navItems, setNavItems] = useState<NavItem[]>([]);
     const [expanded, setExpanded] = useState(true);
+
+    const router = useRouter();
+
+    const logoutAndRedirect = async () => {
+        await logout();
+        router.push("/login");
+
+    }
 
     useEffect(() => {
         // get navItems based on user roles or teams if needed
@@ -43,7 +52,7 @@ export default function SolutionsLayout({ children }: LayoutProps) {
                     expanded={expanded}
                     user={user}
                     teams={teams}
-                    logout={logout}
+                    logout={logoutAndRedirect}
                     setExpanded={setExpanded}
                 />
             </div>
